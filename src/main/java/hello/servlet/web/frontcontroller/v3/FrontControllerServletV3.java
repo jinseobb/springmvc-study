@@ -31,8 +31,8 @@ public class FrontControllerServletV3 extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String requestURI = request.getRequestURI();
 
+        String requestURI = request.getRequestURI();
         ControllerV3 controller = controllerMap.get(requestURI);
         //System.out.println(controller);
         if(controller == null){
@@ -41,14 +41,14 @@ public class FrontControllerServletV3 extends HttpServlet {
         }
 
         Map<String, String> paramMap = createParamMap(request);
-       // System.out.println(createParamMap(request));
+        System.out.println(createParamMap(request));
         ModelView mv = controller.process(paramMap);
-       // System.out.println("controller = " + controller.process(paramMap));
-       // System.out.println(mv);
-       // System.out.println("mv.getViewName() = " + mv.getViewName());
+        System.out.println("controller = " + controller.process(paramMap));
+        System.out.println(mv);
+        System.out.println("mv.getViewName() = " + mv.getViewName());
         String viewName = mv.getViewName();
         MyView view = viewResolver(viewName);
-       // System.out.println("mv.getModel() = " + mv.getModel());
+        System.out.println("mv.getModel() = " + mv.getModel());
        view.render(mv.getModel(),request,response);
     }
 
